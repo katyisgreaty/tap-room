@@ -5,6 +5,9 @@ import { Keg } from './models/keg.model';
   selector: 'sell-pint',
   template: `
     <button type="button" (click)="decrementPint(currentKeg, 1)">Buy Pint</button>
+    <button type="button" (click)="decrementPint(currentKeg, 2)">Buy Growler</button>
+    <button type="button" (click)="decrementPint(currentKeg, 4)">Buy Large Growler</button>
+    <button type="button" (click)="decrementPint(currentKeg, 20)">Buy 20 Pints I guess</button>
   `
 })
 
