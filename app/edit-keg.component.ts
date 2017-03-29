@@ -7,14 +7,13 @@ import { Keg } from './models/keg.model';
   <div class="form-group col-md-6">
     <form>
       <label>Name of Beer</label>
-      <input [(ngModel)]="currentKeg.name" class="form-control" type="text">
+      <input [value]="currentKeg.name" (input)="currentKeg.name = $event.target.value" class="form-control" type="text">
       <label>Brand</label>
-      <input [(ngModel)]="currentKeg.brand" class="form-control" type="text">
+      <input [value]="currentKeg.brand" (input)="currentKeg.brand = $event.target.value" class="form-control" type="text">
       <label>Price per Pint</label>
-      <input  [(ngModel)]="currentKeg.price" class="form-control" type="number">
+      <input  [value]="currentKeg.price" (input)="currentKeg.price = $event.target.value" class="form-control" type="number">
       <label>Alcohol Content (%)</label>
-      <input [(ngModel)]="currentKeg.alcoholContent" class="form-control" type="number">
-      <button type="button" (click)="editKeg(currentKeg)">Update</button>
+      <input [value]="currentKeg.alcoholContent" (input)="currentKeg.alcoholContent = $event.target.value" class="form-control" type="number">
     </form>
   </div>
   `

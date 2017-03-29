@@ -15,12 +15,13 @@ import { Keg } from './models/keg.model';
       <div *ngIf="currentKeg.isBeingEdited == false">
         <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
           <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.price}}.00/pint</h4>
-          <button type="button" class="btn btn-primary" (click)="currentKeg.isBeingEdited = true">Edit Keg</button>
+          <button type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Edit Keg</button>
         </div>
       </div>
       <div *ngIf="currentKeg.isBeingEdited">
         <div class="panel-body">
-          <edit-keg>Loading</edit-keg>
+          <edit-keg [currentKeg]="currentKeg">Loading</edit-keg>
+          <button type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Finish Editing</button>
         </div>
       </div>
     </div>
@@ -36,5 +37,10 @@ export class KegListComponent {
       individualKeg.isFocusBrew = false;
     }
     selectedKeg.isFocusBrew = true;
+  }
+
+  toggleEditing(selectedKeg: Keg) {
+    selectedKeg.isBeingEdited = (!(selectedKeg.isBeingEdited));
+    console.log("toggles");
   }
 }
