@@ -5,12 +5,19 @@ import { Keg } from './models/keg.model';
 @Component({
   selector: 'app-root',
   template: `
-  <button type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Employee Mode</button>
-  <h1>Goooooood</h1>
-  <button type="button" (click)="sortByPintsLeft()">Sort by Pints!</button>
-  <keg-list [isEmployee]="isEmployee">Loading...</keg-list>
-  <new-keg *ngIf="isEmployee">Comin at you, bro</new-keg>
-  <div *ngIf="isEmployee == false">NEED MORE MINERALS</div>
+  <div class="jumbotron bg-success">
+    <h1>Git yer bur hur</h1>
+  </div>
+  <div class="container">
+    <button *ngIf="isEmployee == false" type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Employee Mode</button>
+    <button *ngIf="isEmployee" type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Patron Mode</button>
+    <hr>
+    <button type="button" (click)="sortByPintsLeft()">Sort by Pints!</button>
+    <br>
+    <br>
+    <keg-list [isEmployee]="isEmployee">Loading...</keg-list>
+    <new-keg *ngIf="isEmployee">Comin at you, bro</new-keg>
+  </div>
   `
 })
 

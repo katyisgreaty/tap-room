@@ -16,5 +16,7 @@ export class SellPintComponent {
 
   public decrementPint(currentKeg: Keg, amount: number) {
     currentKeg.pintsLeft -= amount;
+    currentKeg.pintsAreLow = (currentKeg.pintsLeft < 20);
+    console.log("pints left: " + currentKeg.pintsLeft);
   }
 }

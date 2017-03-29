@@ -5,19 +5,16 @@ import { Keg } from './models/keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-  <div class="">
-    HELLOOOOOO
-  </div>
-
     <div [class]="assignBackground(currentKeg)" *ngFor="let currentKeg of inventory" (click)="showDetails(currentKeg)">
       <div class="panel-heading">
         <h2>{{currentKeg.name}} by {{currentKeg.brand}}</h2>
+        <button type="button" *ngIf="currentKeg.pintsAreLow"> <span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
       </div>
       <div *ngIf="currentKeg.isBeingEdited == false">
         <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
           <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.price}}.00/pint</h4>
           <h4>There are {{currentKeg.pintsLeft}} pints left in this keg</h4>
-          <sell-pint [currentKeg]="currentKeg"></sell-pint>
+          <sell-pint *ngIf="isEmployee" [currentKeg]="currentKeg"></sell-pint>
           <button *ngIf="isEmployee" type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Edit Keg</button>
         </div>
       </div>
