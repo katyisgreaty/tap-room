@@ -7,6 +7,7 @@ var Keg = (function () {
         this.alcoholContent = alcoholContent;
         this.pintsLeft = 124;
         this.isFocusBrew = false;
+        this.isBeingEdited = false;
     }
     ;
     Keg.prototype.addToInventory = function (newKeg) {

@@ -24,7 +24,7 @@ var KegListComponent = (function () {
     KegListComponent = __decorate([
         core_1.Component({
             selector: 'keg-list',
-            template: "\n  <div class=\"\">\n    HELLOOOOOO\n  </div>\n    <div class=\"panel panel-success\" *ngFor=\"let currentKeg of inventory\" (click)=\"showDetails(currentKeg)\">\n      <div class=\"panel-heading\">\n        <h2>{{currentKeg.name}} by {{currentKeg.brand}}</h2>\n      </div>\n      <div class=\"panel-body\" *ngIf=\"currentKeg.isFocusBrew\">\n        <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>${{currentKeg.price}}.00/pint</h4>\n      </div>\n    </div>\n\n  "
+            template: "\n  <div class=\"\">\n    HELLOOOOOO\n  </div>\n    <div class=\"panel panel-success\" *ngFor=\"let currentKeg of inventory\" (click)=\"showDetails(currentKeg)\">\n      <div class=\"panel-heading\">\n        <h2>{{currentKeg.name}} by {{currentKeg.brand}}</h2>\n      </div>\n      <div *ngIf=\"currentKeg.isBeingEdited == false\">\n        <div class=\"panel-body\" *ngIf=\"currentKeg.isFocusBrew\">\n          <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>${{currentKeg.price}}.00/pint</h4>\n        </div>\n      </div>\n      <edit-keg [currentKeg]=\"currentKeg\" *ngIf=\"currentKeg.isBeingEdited\"></edit-keg>\n    </div>\n\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], KegListComponent);

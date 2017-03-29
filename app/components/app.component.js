@@ -11,12 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var AppComponent = (function () {
     function AppComponent() {
+        this.isEmployee = false;
         this.selectedKeg = null;
     }
+    AppComponent.prototype.toggleEmployeeMode = function () {
+        this.isEmployee = (!(this.isEmployee));
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app-root',
-            template: "\n  <h1>Goooooood</h1>\n  <keg-list>Loading...</keg-list>\n  <new-keg>Comin at you, bro</new-keg>\n  "
+            template: "\n  <button type=\"button\" (click)=\"toggleEmployeeMode()\" class=\"btn btn-success\">Switch to Employee Mode</button>\n  <h1>Goooooood</h1>\n  <keg-list>Loading...</keg-list>\n  <new-keg *ngIf=\"isEmployee\">Comin at you, bro</new-keg>\n  <div *ngIf=\"isEmployee == false\">NEED MORE MINERALS</div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], AppComponent);

@@ -12,9 +12,12 @@ import { Keg } from '../models/keg.model';
       <div class="panel-heading">
         <h2>{{currentKeg.name}} by {{currentKeg.brand}}</h2>
       </div>
-      <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
-        <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.price}}.00/pint</h4>
+      <div *ngIf="currentKeg.isBeingEdited == false">
+        <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
+          <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.price}}.00/pint</h4>
+        </div>
       </div>
+      <edit-keg [currentKeg]="currentKeg" *ngIf="currentKeg.isBeingEdited"></edit-keg>
     </div>
 
   `
