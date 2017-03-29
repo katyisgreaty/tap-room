@@ -13,6 +13,20 @@ var Keg = (function () {
     Keg.prototype.addToInventory = function (newKeg) {
         Keg.inventory.push(newKeg);
     };
+    Keg.sortByPintsLeft = function () {
+        var copyArray = Keg.inventory;
+        for (var j = 0; j < copyArray.length - 1; j++) {
+            for (var i = 0; i < copyArray.length - (1 + j); i++) {
+                if (copyArray[i].pintsLeft > copyArray[i + 1].pintsLeft) {
+                    var placeholder = copyArray[i];
+                    copyArray[i] = copyArray[i + 1];
+                    copyArray[i + 1] = placeholder;
+                    console.log("swapped");
+                }
+            }
+        }
+        Keg.inventory = copyArray;
+    };
     Keg.inventory = [
         new Keg('Manny\'s', 'Georgetown Brewery', 7, 5.4),
         new Keg('Black Butte Porter', 'Deschutes Brewery', 8, 5.2),
