@@ -7,8 +7,8 @@ import { Keg } from './models/keg.model';
   template: `
     <div [class]="assignBackground(currentKeg)" *ngFor="let currentKeg of inventory" (click)="showDetails(currentKeg)">
       <div class="panel-heading">
+        <button type="button" class="btn-lg align-right" *ngIf="currentKeg.pintsAreLow" disabled> <span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
         <h2>{{currentKeg.name}} by {{currentKeg.brand}}</h2>
-        <button type="button" *ngIf="currentKeg.pintsAreLow"> <span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
       </div>
       <div *ngIf="currentKeg.isBeingEdited == false">
         <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
