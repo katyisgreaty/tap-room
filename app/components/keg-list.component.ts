@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Keg } from './models/keg.model';
+import { Keg } from '../models/keg.model';
 
 
 @Component({
