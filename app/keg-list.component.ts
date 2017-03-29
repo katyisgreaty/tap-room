@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Keg } from '../models/keg.model';
+import { Keg } from './models/keg.model';
 
 
 @Component({
@@ -15,9 +15,14 @@ import { Keg } from '../models/keg.model';
       <div *ngIf="currentKeg.isBeingEdited == false">
         <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
           <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.price}}.00/pint</h4>
+          <button type="button" class="btn btn-primary" (click)="currentKeg.isBeingEdited = true">Edit Keg</button>
         </div>
       </div>
-      <edit-keg [currentKeg]="currentKeg" *ngIf="currentKeg.isBeingEdited"></edit-keg>
+      <div *ngIf="currentKeg.isBeingEdited">
+        <div class="panel-body">
+          <edit-keg>Loading</edit-keg>
+        </div>
+      </div>
     </div>
 
   `

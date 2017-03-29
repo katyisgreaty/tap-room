@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { Keg } from '../models/keg.model';
+import { Component, Input } from '@angular/core';
+import { Keg } from './models/keg.model';
 
 @Component({
   selector: 'edit-keg',
@@ -20,8 +20,8 @@ import { Keg } from '../models/keg.model';
   `
 })
 
-export class editedKegComponent {
-  currentKeg: Keg = null;
+export class EditKegComponent {
+  @Input() currentKeg: Keg;
 
   editKeg(selectedKeg: Keg) {
     selectedKeg.isBeingEdited = false;
