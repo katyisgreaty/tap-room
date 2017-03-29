@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Keg } from './models/keg.model';
 
 
@@ -15,7 +15,9 @@ import { Keg } from './models/keg.model';
       <div *ngIf="currentKeg.isBeingEdited == false">
         <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
           <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.price}}.00/pint</h4>
-          <button type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Edit Keg</button>
+          <h4>There are {{currentKeg.pintsLeft}} pints left in this keg</h4>
+          <sell-pint [currentKeg]="currentKeg"></sell-pint>
+          <button *ngIf="isEmployee" type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Edit Keg</button>
         </div>
       </div>
       <div *ngIf="currentKeg.isBeingEdited">
@@ -30,6 +32,7 @@ import { Keg } from './models/keg.model';
 })
 
 export class KegListComponent {
+  @Input() isEmployee: boolean;
   inventory: Keg[] = Keg.inventory;
 
   showDetails(selectedKeg: Keg) {

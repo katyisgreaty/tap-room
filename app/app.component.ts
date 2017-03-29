@@ -7,7 +7,7 @@ import { Keg } from './models/keg.model';
   template: `
   <button type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Employee Mode</button>
   <h1>Goooooood</h1>
-  <keg-list>Loading...</keg-list>
+  <keg-list [isEmployee]="isEmployee">Loading...</keg-list>
   <new-keg *ngIf="isEmployee">Comin at you, bro</new-keg>
   <div *ngIf="isEmployee == false">NEED MORE MINERALS</div>
   `
