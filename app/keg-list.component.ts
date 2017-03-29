@@ -8,7 +8,8 @@ import { Keg } from './models/keg.model';
   <div class="">
     HELLOOOOOO
   </div>
-    <div class="panel panel-success" *ngFor="let currentKeg of inventory" (click)="showDetails(currentKeg)">
+
+    <div [class]="assignBackground(currentKeg)" *ngFor="let currentKeg of inventory" (click)="showDetails(currentKeg)">
       <div class="panel-heading">
         <h2>{{currentKeg.name}} by {{currentKeg.brand}}</h2>
       </div>
@@ -40,6 +41,20 @@ export class KegListComponent {
       individualKeg.isFocusBrew = false;
     }
     selectedKeg.isFocusBrew = true;
+  }
+
+  assignBackground(selectedKeg: Keg) {
+    if(this.isEmployee) {
+      if(selectedKeg.pintsLeft > 50) {
+        return "panel panel-success";
+      } else if (selectedKeg.pintsLeft > 10) {
+        return "panel panel-warning";
+      } else {
+        return "panel panel-danger";
+      }
+    } else {
+      return "panel panel-primary";
+    }
   }
 
   toggleEditing(selectedKeg: Keg) {
