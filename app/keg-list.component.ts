@@ -18,7 +18,7 @@ import { Keg } from './models/keg.model';
             <div class="col-sm-6">
               <div class="discount-panel">
                 <h3>Discount this Beer</h3>
-                <input type="number" (input)="currentKeg.modifyPrice($event.target.value)">
+                <input type="number" (input)="currentKeg.modifyPrice($event.target.value)" min="1" max="99">
               </div>
             </div>
             <div class="col-sm-6">
