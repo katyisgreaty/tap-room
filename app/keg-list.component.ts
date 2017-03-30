@@ -37,9 +37,11 @@ export class KegListComponent {
 
   showDetails(selectedKeg: Keg) {
     for(let individualKeg of this.inventory) {
-      individualKeg.isFocusBrew = false;
+      if(individualKeg.kegId !== selectedKeg.kegId){
+          individualKeg.isFocusBrew = false;
+      }
     }
-    selectedKeg.isFocusBrew = true;
+    selectedKeg.isFocusBrew = (!(selectedKeg.isFocusBrew));
   }
 
   assignBackground(selectedKeg: Keg) {
