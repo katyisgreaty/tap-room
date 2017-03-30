@@ -7,7 +7,8 @@ import { ApiRequest } from './models/apiRequest.model';
   selector: 'app-root',
   template: `
   <div class="jumbotron bg-success">
-    <h1>Git yer bur hur</h1>
+    <button *ngIf="isEmployee === true" type="button" class="btn btn-warning btn-lg align-right" (click)="happyHour()">HAPPY HOUR</button>
+    <h1>ERMAHGERHD Git Yer Bur Hur</h1>
     <!-- <button type="button" name="button" (click)="newApiCall()">Try Dat Call</button> -->
   </div>
   <div class="sidebar">
@@ -29,6 +30,12 @@ export class AppComponent {
 
   public selectedKeg: Keg = null;
 
+  happyHour() {
+    for(let keg of Keg.inventory) {
+      keg.modifyPrice(33);
+    }
+  }
+
   getMaxPrice() {
     return Keg.maxPrice;
   }
@@ -38,6 +45,9 @@ export class AppComponent {
 
   toggleEmployeeMode() {
     this.isEmployee = (!(this.isEmployee));
+    for(let keg of Keg.inventory) {
+      keg.isBeingEdited = false;
+    }
   }
 
   sortByPintsLeft() {

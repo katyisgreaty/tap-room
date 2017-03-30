@@ -10,7 +10,7 @@ import { Keg } from './models/keg.model';
       <label>Brand</label>
       <input [value]="currentKeg.brand" (input)="currentKeg.brand = $event.target.value" class="form-control" type="text">
       <label>Price per Pint</label>
-      <input  [(ngModel)]="currentKeg.price" class="form-control" type="number">
+      <input  [(ngModel)]="currentKeg.basePrice" class="form-control" type="number">
       <label>Alcohol Content (%)</label>
       <input [value]="currentKeg.alcoholContent" (input)="currentKeg.alcoholContent = $event.target.value" class="form-control" type="number">
     <button type="button" class="btn btn-danger" (click)="deleteButtonClicked(currentKeg)">Delete This Keg</button>

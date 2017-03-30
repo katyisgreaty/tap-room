@@ -3,8 +3,10 @@ export class Keg {
   public isFocusBrew: boolean = false;
   public isBeingEdited: boolean = false;
   public pintsAreLow: boolean = false;
+  public salePrice: number;
   public kegId: number;
-  constructor(public name: string, public brand: string, public price: number, public alcoholContent: number) {
+  constructor(public name: string, public brand: string, public basePrice: number, public alcoholContent: number) {
+    this.salePrice = basePrice;
     this.kegId = Keg.idCounter;
     Keg.idCounter++;
   };
@@ -22,11 +24,14 @@ export class Keg {
     new Keg('IPA', 'Lagunitas Brewery', 8, 5.4),
   ];
 
-  public addToInventory(newKeg: Keg) {
-    Keg.inventory.push(newKeg);
+  public resetPrice() {
+    this.salePrice = this.basePrice;
   }
 
-
+  public modifyPrice(percentOff: number) {
+    this.salePrice = this.basePrice * (1 - (percentOff/100));
+    this.salePrice = Math.round(this.salePrice * 100) / 100;
+  }
 
   public static sortByPintsLeft() {
     var copyArray = Keg.inventory;

@@ -12,10 +12,20 @@ import { Keg } from './models/keg.model';
       </div>
       <div *ngIf="currentKeg.isBeingEdited == false">
         <div class="panel-body" *ngIf="currentKeg.isFocusBrew">
-          <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.price}}.00/pint</h4>
+          <h4>Alcohol Content: {{currentKeg.alcoholContent}}%</h4> <h4>\${{currentKeg.salePrice}}/pint</h4>
           <h4>There are {{currentKeg.pintsLeft}} pints left in this keg</h4>
-          <sell-pint *ngIf="isEmployee" [currentKeg]="currentKeg"></sell-pint>
-          <button *ngIf="isEmployee" type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Edit Keg</button>
+          <div *ngIf="isEmployee">
+            <div class="col-sm-6">
+              <div class="discount-panel">
+                <h3>Discount this Beer</h3>
+                <input type="number" (input)="currentKeg.modifyPrice($event.target.value)">
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <sell-pint [currentKeg]="currentKeg"></sell-pint>
+              <button type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Edit Keg</button>
+            </div>
+          </div>
         </div>
       </div>
       <div *ngIf="currentKeg.isBeingEdited">

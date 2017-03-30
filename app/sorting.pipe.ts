@@ -10,7 +10,7 @@ export class SortingPipe implements PipeTransform {
   transform(input: Keg[]) {
     var output: Keg[] = [];
     for (var i=0; i<input.length; i++) {
-      if (input[i].price <= Keg.maxPrice) {
+      if (input[i].salePrice <= Keg.maxPrice) {
         output.push(input[i]);
       }
     }

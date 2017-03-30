@@ -1,20 +1,25 @@
 "use strict";
 var Keg = (function () {
-    function Keg(name, brand, price, alcoholContent) {
+    function Keg(name, brand, basePrice, alcoholContent) {
         this.name = name;
         this.brand = brand;
-        this.price = price;
+        this.basePrice = basePrice;
         this.alcoholContent = alcoholContent;
         this.pintsLeft = 124;
         this.isFocusBrew = false;
         this.isBeingEdited = false;
         this.pintsAreLow = false;
+        this.salePrice = basePrice;
         this.kegId = Keg.idCounter;
         Keg.idCounter++;
     }
     ;
-    Keg.prototype.addToInventory = function (newKeg) {
-        Keg.inventory.push(newKeg);
+    Keg.prototype.resetPrice = function () {
+        this.salePrice = this.basePrice;
+    };
+    Keg.prototype.modifyPrice = function (percentOff) {
+        this.salePrice = this.basePrice * (1 - (percentOff / 100));
+        this.salePrice = Math.round(this.salePrice * 100) / 100;
     };
     Keg.sortByPintsLeft = function () {
         var copyArray = Keg.inventory;
