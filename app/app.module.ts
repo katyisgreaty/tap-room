@@ -6,10 +6,12 @@ import { KegListComponent }  from './keg-list.component';
 import { NewKegComponent } from './new-keg.component';
 import { EditKegComponent } from './edit-keg.component';
 import { SellPintComponent } from './sell-pint.component';
+import { HttpModule } from '@angular/http';
+import { SortingPipe } from './sorting.pipe';
 
 @NgModule({
-  imports: [ BrowserModule, FormsModule ],
-  declarations: [ AppComponent, KegListComponent, NewKegComponent, EditKegComponent, SellPintComponent ],
+  imports: [ BrowserModule, FormsModule, HttpModule ],
+  declarations: [ AppComponent, KegListComponent, NewKegComponent, EditKegComponent, SellPintComponent, SortingPipe ],
   bootstrap:    [ AppComponent ]
 })
 

@@ -1,4 +1,3 @@
-
 export class Keg {
   public pintsLeft: number = 124;
   public isFocusBrew: boolean = false;
@@ -11,6 +10,7 @@ export class Keg {
   };
 
   static idCounter: number = 0;
+  static maxPrice: number = 100;
 
   static inventory: Keg[] = [
     new Keg('Manny\'s', 'Georgetown Brewery', 7, 5.4),
@@ -25,6 +25,8 @@ export class Keg {
   public addToInventory(newKeg: Keg) {
     Keg.inventory.push(newKeg);
   }
+
+
 
   public static sortByPintsLeft() {
     var copyArray = Keg.inventory;

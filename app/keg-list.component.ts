@@ -5,7 +5,7 @@ import { Keg } from './models/keg.model';
 @Component({
   selector: 'keg-list',
   template: `
-    <div [class]="assignBackground(currentKeg)" *ngFor="let currentKeg of inventory" (click)="showDetails(currentKeg)">
+    <div [class]="assignBackground(currentKeg)" *ngFor="let currentKeg of inventory | priceSorted" (click)="showDetails(currentKeg)">
       <div class="panel-heading">
         <button type="button" class="btn-lg align-right" *ngIf="currentKeg.pintsAreLow" disabled> <span class="glyphicon glyphicon-alert" aria-hidden="true"></span></button>
         <h2>{{currentKeg.name}} by {{currentKeg.brand}}</h2>

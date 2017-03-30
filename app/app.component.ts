@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Keg } from './models/keg.model';
+import { ApiRequest } from './models/apiRequest.model';
 
 
 @Component({
@@ -7,7 +8,10 @@ import { Keg } from './models/keg.model';
   template: `
   <div class="jumbotron bg-success">
     <h1>Git yer bur hur</h1>
+    <!-- <button type="button" name="button" (click)="newApiCall()">Try Dat Call</button> -->
   </div>
+  <label for="max-price">Max Price for Beers</label>
+  <input type="number" name="max-price" [value]="getMaxPrice()" (input)="setMaxPrice($event.target.value)">
   <div class="container">
     <button *ngIf="isEmployee == false" type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Employee Mode</button>
     <button *ngIf="isEmployee" type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Patron Mode</button>
@@ -26,6 +30,13 @@ export class AppComponent {
 
   public selectedKeg: Keg = null;
 
+  getMaxPrice() {
+    return Keg.maxPrice;
+  }
+  setMaxPrice(newPrice: number) {
+    Keg.maxPrice = newPrice;
+  }
+
   toggleEmployeeMode() {
     this.isEmployee = (!(this.isEmployee));
   }
@@ -36,6 +47,10 @@ export class AppComponent {
 
   addKeg(newKeg: Keg) {
     Keg.inventory.push(newKeg);
+  }
+
+  newApiCall(){
+    ApiRequest.makeApiCall();
   }
 
   deleteKeg(selectedKeg: Keg) {
