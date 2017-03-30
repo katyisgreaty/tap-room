@@ -4,7 +4,13 @@ export class Keg {
   public isFocusBrew: boolean = false;
   public isBeingEdited: boolean = false;
   public pintsAreLow: boolean = false;
-  constructor(public name: string, public brand: string, public price: number, public alcoholContent: number){};
+  public kegId: number;
+  constructor(public name: string, public brand: string, public price: number, public alcoholContent: number) {
+    this.kegId = Keg.idCounter;
+    Keg.idCounter++;
+  };
+
+  static idCounter: number = 0;
 
   static inventory: Keg[] = [
     new Keg('Manny\'s', 'Georgetown Brewery', 7, 5.4),

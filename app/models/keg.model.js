@@ -9,6 +9,8 @@ var Keg = (function () {
         this.isFocusBrew = false;
         this.isBeingEdited = false;
         this.pintsAreLow = false;
+        this.kegId = Keg.idCounter;
+        Keg.idCounter++;
     }
     ;
     Keg.prototype.addToInventory = function (newKeg) {
@@ -28,6 +30,7 @@ var Keg = (function () {
         }
         Keg.inventory = copyArray;
     };
+    Keg.idCounter = 0;
     Keg.inventory = [
         new Keg('Manny\'s', 'Georgetown Brewery', 7, 5.4),
         new Keg('Black Butte Porter', 'Deschutes Brewery', 8, 5.2),

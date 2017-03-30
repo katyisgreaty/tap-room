@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Keg } from './models/keg.model';
 
 @Component({
@@ -14,24 +14,26 @@ import { Keg } from './models/keg.model';
         <input type="number" (input)="newKegPrice = $event.target.value" class="form-control">
         <label  for = "">Alcohol Content (%)</label>
         <input name="alc" type="number" (input)="newKegAlcoholContent = $event.target.value" class="form-control">
-        <button type="button" (click)="addNewKeg()">Make a new Keg</button>
+        <button type="button" (click)="newKegButtonClicked()">Make a new Keg</button>
       </form>
     </div>
   `
 })
 
 export class NewKegComponent {
+  @Output() newClickSender = new EventEmitter();
+
   newKegName: string = null;
   newKegBrand: string = null;
   newKegPrice: number = null;
   newKegAlcoholContent: number = null;
 
-  addNewKeg(){
+  newKegButtonClicked(){
     if(this.newKegName === null || this.newKegBrand === null || this.newKegPrice === null || this.newKegAlcoholContent === null) {
       alert("Please fill out all the fields!");
     } else {
       var newKeg = new Keg(this.newKegName, this.newKegBrand, this.newKegPrice, this.newKegAlcoholContent);
-      Keg.inventory.push(newKeg);
+      this.newClickSender.emit(newKeg);
     }
   }
 }

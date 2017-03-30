@@ -15,8 +15,8 @@ import { Keg } from './models/keg.model';
     <button type="button" (click)="sortByPintsLeft()">Sort by Pints!</button>
     <br>
     <br>
-    <keg-list [isEmployee]="isEmployee">Loading...</keg-list>
-    <new-keg *ngIf="isEmployee">Comin at you, bro</new-keg>
+    <keg-list [isEmployee]="isEmployee" (deleteSender)="deleteKeg($event)">Loading...</keg-list>
+    <new-keg *ngIf="isEmployee" (newClickSender)="addKeg($event)">Comin at you, bro</new-keg>
   </div>
   `
 })
@@ -32,6 +32,19 @@ export class AppComponent {
 
   sortByPintsLeft() {
     Keg.sortByPintsLeft();
+  }
+
+  addKeg(newKeg: Keg) {
+    Keg.inventory.push(newKeg);
+  }
+
+  deleteKeg(selectedKeg: Keg) {
+    for(let index = 0; index < Keg.inventory.length; index++) {
+      if(Keg.inventory[index].kegId === selectedKeg.kegId) {
+        Keg.inventory.splice(index, 1);
+        break;
+      }
+    }
   }
 
 }

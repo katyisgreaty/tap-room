@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Keg } from './models/keg.model';
 
 @Component({
@@ -15,14 +15,21 @@ import { Keg } from './models/keg.model';
       <label>Alcohol Content (%)</label>
       <input [value]="currentKeg.alcoholContent" (input)="currentKeg.alcoholContent = $event.target.value" class="form-control" type="number">
     </form>
+    <button type="button" class="btn btn-danger" (click)="deleteButtonClicked(currentKeg)">Delete This Keg</button>
   </div>
   `
 })
 
 export class EditKegComponent {
   @Input() currentKeg: Keg;
+  @Output() clickSender = new EventEmitter();
 
   editKeg(selectedKeg: Keg) {
     selectedKeg.isBeingEdited = false;
   }
+
+  deleteButtonClicked(selectedKeg: Keg) {
+    this.clickSender.emit(selectedKeg);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Keg } from './models/keg.model';
 
 
@@ -20,7 +20,7 @@ import { Keg } from './models/keg.model';
       </div>
       <div *ngIf="currentKeg.isBeingEdited">
         <div class="panel-body">
-          <edit-keg [currentKeg]="currentKeg">Loading</edit-keg>
+          <edit-keg [currentKeg]="currentKeg" (clickSender)="sendDeleteMessage($event)">Loading</edit-keg>
           <button type="button" class="btn btn-primary" (click)="toggleEditing(currentKeg)">Finish Editing</button>
         </div>
       </div>
@@ -31,6 +31,8 @@ import { Keg } from './models/keg.model';
 
 export class KegListComponent {
   @Input() isEmployee: boolean;
+  @Output() deleteSender = new EventEmitter();
+
   inventory: Keg[] = Keg.inventory;
 
   showDetails(selectedKeg: Keg) {
@@ -57,5 +59,9 @@ export class KegListComponent {
   toggleEditing(selectedKeg: Keg) {
     selectedKeg.isBeingEdited = (!(selectedKeg.isBeingEdited));
     console.log("toggles");
+  }
+
+  sendDeleteMessage(selectedKeg: Keg) {
+    this.deleteSender.emit(selectedKeg);
   }
 }
