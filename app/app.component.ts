@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { Keg } from './models/keg.model';
-import { ApiRequest } from './models/apiRequest.model';
+import {Observable} from 'rxjs/Observable';
+import {Http, Response} from '@angular/http';
+import {Injectable } from '@angular/core';
+import { BeerService } from './beer.service';
 
 
 @Component({
@@ -22,7 +25,8 @@ import { ApiRequest } from './models/apiRequest.model';
     <keg-list [isEmployee]="isEmployee" (deleteSender)="deleteKeg($event)">Loading...</keg-list>
     <new-keg *ngIf="isEmployee" (newClickSender)="addKeg($event)">Comin at you, bro</new-keg>
   </div>
-  `
+  `,
+  providers: [BeerService]
 })
 
 export class AppComponent {
@@ -72,10 +76,6 @@ export class AppComponent {
 
   addKeg(newKeg: Keg) {
     Keg.inventory.push(newKeg);
-  }
-
-  newApiCall(){
-    ApiRequest.makeApiCall();
   }
 
   deleteKeg(selectedKeg: Keg) {

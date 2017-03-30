@@ -1,1 +1,3 @@
 brewery api key: 78429bded3df154045e0f95e41c88cb2
+
+http://api.brewerydb.com/v2/beers/?key=78429bded3df154045e0f95e41c88cb2&availableId=1
