@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Keg } from './models/keg.model';
 import {Observable} from 'rxjs/Observable';
 import {Http, Response} from '@angular/http';
-import {Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { BeerService } from './beer.service';
 
 
@@ -29,11 +29,17 @@ import { BeerService } from './beer.service';
   providers: [BeerService]
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit{
   public isEmployee: boolean = false;
   public isHappyHour: boolean = false;
-
   public selectedKeg: Keg = null;
+  public datastring: string;
+
+  constructor(private heroService: HeroService) {};
+
+  getHeroes(): void {
+    this.datastring = this.beerService.getBeer();
+  }
 
   happyHour() {
     this.isHappyHour = (!(this.isHappyHour));
