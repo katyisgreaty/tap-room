@@ -1,3 +1,21 @@
 .align-right {
   float: right;
 }
+
+.sidebar {
+  position: absolute;
+  padding-top: 17%;
+  padding-left: 8px;
+  top: 195px;
+  left: 0px;
+  height: 100%;
+  width: 210px;
+  background-image: url("http://www.conservativehome.com/wp-content/uploads/2013/12/beer.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.side-padding {
+  padding-left: 200px;
+}

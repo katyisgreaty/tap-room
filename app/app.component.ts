@@ -10,15 +10,14 @@ import { ApiRequest } from './models/apiRequest.model';
     <h1>Git yer bur hur</h1>
     <!-- <button type="button" name="button" (click)="newApiCall()">Try Dat Call</button> -->
   </div>
-  <label for="max-price">Max Price for Beers</label>
-  <input type="number" name="max-price" [value]="getMaxPrice()" (input)="setMaxPrice($event.target.value)">
-  <div class="container">
-    <button *ngIf="isEmployee == false" type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Employee Mode</button>
-    <button *ngIf="isEmployee" type="button" (click)="toggleEmployeeMode()" class="btn btn-success">Switch to Patron Mode</button>
-    <hr>
-    <button type="button" (click)="sortByPintsLeft()">Sort by Pints!</button>
-    <br>
-    <br>
+  <div class="sidebar">
+    <button *ngIf="isEmployee == false" type="button" (click)="toggleEmployeeMode()" class="btn button-spacer">Switch to Employee Mode</button>
+    <button *ngIf="isEmployee" type="button" (click)="toggleEmployeeMode()" class="btn button-spacer">Switch to Patron Mode</button>
+    <label for="max-price">Max Price for Beers</label>
+    <input type="number" name="max-price" [value]="getMaxPrice()" (input)="setMaxPrice($event.target.value)">
+    <button class="btn button-spacer" type="button" (click)="sortByPintsLeft()">Sort by Pints!</button>
+  </div>
+  <div class="container side-padding">
     <keg-list [isEmployee]="isEmployee" (deleteSender)="deleteKeg($event)">Loading...</keg-list>
     <new-keg *ngIf="isEmployee" (newClickSender)="addKeg($event)">Comin at you, bro</new-keg>
   </div>
